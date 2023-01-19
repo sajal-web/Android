@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sajal.assignment.app.videoPlayer.VideoPlayer;
+import com.sajal.assignment.audioPlayer.AudioPlayer;
 
 public class MainActivity extends AppCompatActivity {
     ImageView imageView, imageView2;
@@ -111,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToPlayVideo(View view) {
         Intent intent = new Intent(MainActivity.this, VideoPlayer.class);
+        startActivity(intent);
+    }
+
+    public void goToPlaySong(View view) {
+        Intent intent = new Intent(MainActivity.this, AudioPlayer.class);
         startActivity(intent);
     }
 }
