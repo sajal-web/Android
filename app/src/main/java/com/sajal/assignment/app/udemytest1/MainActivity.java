@@ -1,5 +1,7 @@
 package com.sajal.assignment.app.udemytest1;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +10,9 @@ import androidx.gridlayout.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sajal.assignment.app.videoPlayer.VideoPlayer;
+
 public class MainActivity extends AppCompatActivity {
     ImageView imageView, imageView2;
     TextView winnerTextview;
@@ -102,5 +107,10 @@ public class MainActivity extends AppCompatActivity {
             ImageView counter = (ImageView) gridLayout.getChildAt(i);
             counter.setImageDrawable(null);
         }
+    }
+
+    public void goToPlayVideo(View view) {
+        Intent intent = new Intent(MainActivity.this, VideoPlayer.class);
+        startActivity(intent);
     }
 }
