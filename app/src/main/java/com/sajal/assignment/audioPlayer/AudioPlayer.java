@@ -13,11 +13,14 @@ import android.widget.Toast;
 
 import com.sajal.assignment.app.udemytest1.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class AudioPlayer extends AppCompatActivity {
     MediaPlayer mediaPlayer;
     Button btnPlay, btnPause, btnPP;
     Boolean isPlay = false;
-    private SeekBar volumeSeekbar = null;
+    private SeekBar volumeSeekbar = null,musicSeekbar;
     private AudioManager audioManager = null;
 
     @Override
@@ -29,6 +32,7 @@ public class AudioPlayer extends AppCompatActivity {
         btnPause = findViewById(R.id.btnPause);
         btnPlay = findViewById(R.id.btnPlay);
         btnPP = findViewById(R.id.btnPP);
+        musicSeekbar =(SeekBar) findViewById(R.id.musicSeekbar);
 
         btnPlay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +91,32 @@ public class AudioPlayer extends AppCompatActivity {
 
             }
         });
+        // get the length of the musicseekbar
+        musicSeekbar.setMax(mediaPlayer.getDuration());
+        musicSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                // progress change during running
+            seekBar.setProgress(i);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        // by using this timmer here we make the seekbar auto run
+        new Timer().scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+            musicSeekbar.setProgress(mediaPlayer.getCurrentPosition());
+            }
+        },0,100);
 
     }
 
